@@ -1,0 +1,575 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>CS7260 Fall 2022</title>
+</head>
+<body alink="#1020d0" bgcolor="#ffffff" link="#c02080" vlink="#306080">
+<hr>
+<center>
+<h2><font color="blue">CS7260: Internetworking Architectures and Protocols</font></h2>
+<h2><font color="blue">(Design and Analysis of Network/Router
+  Algorithms and Hardware)<br>
+</font></h2>
+<p>&nbsp;
+  <font color="blue">Fall 2022, College of Computing, Georgia Tech</font></p>
+<p>&nbsp; </p>
+<p></p>
+</center>
+<hr>
+<p> Class time: MW 2:00 to 3:15</p>
+<p>Room:&nbsp;MSE (Molecular Science &amp; Engineering) [Building 167] Room G021</p>
+<p>
+  <br>
+</p>
+<h3><strong>Instructor</strong>: <a href="http://www.cc.gatech.edu/%7Ejx">Prof. Jun
+  (Jim) Xu</a>
+</h3>
+<p>Instructor office hours:&nbsp; Mondays 3:45 to 4:30.&nbsp;</p>
+<p>Instructions: Only one student can be in my office at a time, and they must wear a mask (I will too).&nbsp;</p>
+<p> Email:&nbsp; jx@cc.gatech.edu<br>
+  <br>
+  <br>
+  TA:Jingfan Meng (&nbsp;jmeng40@gatech.edu )<br>
+</p>
+<p>TA office hours:&nbsp; Thursdays 3:45 to 4:30 at Klaus 3rd floor (at lobby near Room 3333). &nbsp; &nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+<h2> Table of Contents</h2>
+<ul>
+  <li> <a href="#info">Course
+Information and Objectives</a> </li>
+  <li> <a href="#text">Textbook
+and References</a> </li>
+  <li> <a href="#schedule">Syllabus
+- Schedule </a> </li>
+  <li> <a href="#project">Special Homework Assignment</a> </li>
+  <li> <a href="#hmws">Homeworks and Previous Exams</a> </li>
+  <li> <a href="#grade">Grading</a> </li>
+  <li> <a href="#policy">Course
+Policies</a> </li>
+  <li> <a href="#misc">Miscellanea</a> </li>
+</ul>
+<p>
+</p>
+<hr>
+<h2><a name="info">Course Information and Objectives </a></h2>
+<ul>
+  <li>This course is fully in-person.  Students are expected to attend the lectures and participate in class discussions. I will not record any in-person lecture this semester. In case you have to miss a lecture due to illness and need to know what was covered, you can find the past scribe notes online; I also have recordings of lectures during the pandemic era that I can share with you if necessary. For any new content that has never been covered, I will try my best to get a student volunteer to scribe the lecture and post the lecture notes.</li>
+</ul>
+<ul>
+  <li>In this semester, the syllabus will put a major emphasis on <font color="red">so-called network algorithmics (a.k.a.
+    router/switch architectures and&nbsp;algorithms).</font> We will study
+    algorithms
+    and protocols used by modern routers/switches to perform data plane
+    functions including forwarding, address/prefix lookups, switching,
+    scheduling, counting,
+    flow classification, flow monitoring and measurement, IP traceback and
+    other security functions.&nbsp; In other words, we will study almost
+    everything about a router/switch except routing, which is a control
+  plane function and therefore out of the scope of this course.<br>
+  </li>
+  <li>The pre-requisite for this course is CS 4251 here or equivalent
+    (An undergarudate networking course that covers OSI/ISO 7 layers and
+    TCP/IP will suffice).&nbsp; This is a reasonably heavy course
+    because I will cover advanced algorithmic techniques and will NOT have
+    time to refresh you on <strong>undergraduate
+      algorithms and data
+      structures</strong>.&nbsp; Whenever necessary, students are expected to
+    make up
+    the gap on their own.<br>
+  </li>
+</ul>
+<ul>
+  <li>The
+course includes a group project (see below).<br>
+  </li>
+</ul>
+<ul>
+  <li>Every student MUST fill in the course survey form and print out
+  and submit the "receipt page".</li>
+</ul>
+<ul>
+  <li>The lecture on Nov. 21 (Monday) will be either taught by Jingfan (the TA), or a pre-recorded video by me.<br>
+  </li>
+</ul>
+<hr>
+<h2><a name="text">Textbook and additional references</a></h2>
+Approximately two thirds of the course material will come from the following
+textbook:
+<h3>
+<center><a
+ href="http://www.amazon.com/gp/product/0120884771/ref=pd_sxp_f/103-5676859-2612613?n=283155"><i><font
+ color="green">Network Algorithmics</font> </i> </a> <br>
+</center>
+</h3>
+by George Varghese, Morgan Kaufmann, 2005 (available at Georgia Tech bookstore).<br>
+<p>The other half will come from exerpts of the secone edition of the above book and from research papers (many by myself). We
+will also cover parts of the following book (you don't need to
+purchase it):<br>
+</p>
+<ul>
+  <li>A. Kumar, D. Manjunath and J. Kuri, <a
+ href="http://books.elsevier.com/us//mk/us/subindex.asp?maintarget=&amp;isbn=0124287514&amp;country=United+States&amp;srccode=&amp;ref=&amp;subcode=&amp;head=&amp;pdf=&amp;basiccode=&amp;txtSearch=&amp;SearchField=&amp;operator=&amp;order=&amp;community=mk">
+Communication Networking, An Analytical Approach </a>, 2004 </li>
+</ul>
+<p></p>
+<hr>
+<h2><a name="schedule">Syllabus - Tentative schedule (subject to
+adjustments)<br>
+</a></h2>
+The reading list will be updated every week, before we cover the
+corresponding
+topic.&nbsp; The schedule is approximate and subject to changes.<br>
+<p></p>
+<ul>
+  <li>Week-1: <font color="blue"> <i>
+Introduction, overview of
+router architectures and hardware <br>
+    </i></font></li>
+  <ul>
+    <li><font color="blue"><span style="color: rgb(0, 0, 0);">Lecture
+0: Going over the syllabus</span></font><font color="blue"><span
+ style="color: rgb(0, 0, 0);"></span></font></li>
+    <li><font color="blue"><span style="color: rgb(0, 0, 0);">Lecture 1:</span></font>
+Introduction to network algorithmics, Varghese chapter 1 (<a
+ href="lecture1.pdf">notes scribed
+by </a><a href="lecture1.pdf">Manoj
+Kumar</a><a href="lecture1.pdf">
+Panguluru</a>)</li>
+    <ul>
+      <li>George Varghese's <a
+ href="http://www.cc.gatech.edu/classes/AY2010/cs7260_spring/introslides.pdf">Slides</a></li>
+    </ul>
+    <li>Lecture 2: Some hardware basics, Varghese chapters 2.2, 2.3 (<a
+ href="lecture2.pdf">notes scribed
+by </a><a href="lecture2.pdf">Paul </a><a href="lecture2.pdf">Plunkett</a>)<br>
+    </li>
+    <ul>
+    </ul>
+  </ul>
+</ul>
+<ul>
+  <li>Week-2 and Week-3<br>
+  </li>
+  <ul>
+    <li style="color: rgb(0, 0, 0);"><i>Exact Lookups and Prefix-Match
+IP Lookups</i></li>
+    <li>Readings: Varghese
+chapters 10 and 11 (I did not cover 11.6, 11.7, 11.8, 11.11, and 11.12)</li>
+    <li><a href="lecture3.pdf">Notes
+for Lecture 3 scribed by Akash
+Agarwal</a></li>
+  </ul>
+  <ul>
+    <li><a href="lecture4.pdf">Notes
+for Lecture 4 scribed by Nishith
+Agarwal</a><br>
+    </li>
+    <li><a href="lecture5.pdf">Notes
+for Lecture 5 scribed by Manika
+Andotra</a></li>
+    <li><a href="lecture6.pdf">Notes
+for Lecture 6 scribed by Dae Won
+Lee</a><br>
+    </li>
+    <li><a href="lecture7.pdf">Notes
+for Lecture 7 scribed by Xiang Fu</a></li>
+  </ul>
+</ul>
+<span style="font-style: italic;"></span>
+<ul>
+</ul>
+<ul>
+  <li style="color: rgb(0, 0, 0);">Week-4</li>
+  <ul>
+    <li style="color: rgb(0, 0, 0);"><span style="font-style: italic;">Prefix-Match
+IP
+Lookups
+and
+Packet
+classification
+algorithms</span><br>
+    </li>
+  </ul>
+  <ul>
+    <li style="color: rgb(0, 0, 0);"> Readings: Varghese chapter 12</li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture8.pdf">Notes for
+Lecture 8 scribed by Nathaniel Barish</a></li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture9.pdf">Notes for
+Lecture 9 to be scribed
+by Vinay Bharadwaj</a> <br>
+    </li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture10.pdf">Notes for
+Lecture 10 to be scribed
+by Anuprem Chalvadi </a><br>
+    </li>
+  </ul>
+  <ul>
+  </ul>
+</ul>
+<ul>
+  <li>Week-5<br>
+  </li>
+  <ul>
+    <li><span style="font-style: italic;">Prefix-Match IP Lookups and
+packet classification Algorithms</span></li>
+    <li style="color: rgb(0, 0, 0);"> Readings: Varghese chapter 12</li>
+    <li>A <a href="skyline-yiqincai.pdf">note</a> on the skyline issue by Mr. Qinyi Cai</li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture11.pdf">Notes for
+Lecture 11 scribed by Chaudhari, Harshal</a></li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture12.pdf">Notes for
+Lecture 12 scribed
+by Ganesh, Anjana</a><br>
+    </li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture13.pdf">Notes for
+Lecture 13 scribed
+by Gurubabu, Ajay Raghav </a></li>
+  </ul>
+  <br>
+  <li>Week-6<br>
+  </li>
+  <ul>
+    <li>Switching algorithms</li>
+    <li>Readings: Varghese 13.1 through 13.8</li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture14.pdf">Notes for
+Lecture 14 scribed by Kanakaraju, Harish<br>
+      </a></li>
+    <li style="color: rgb(0, 0, 0);"><a href="lecture15.pdf">Notes for
+Lecture 15 scribed
+by Kanitkar, Gaurav</a></li>
+    <li style="color: rgb(0, 0, 0);">Mathur, Ankita</li>
+    <li>Sample-and-compare: L. Tassiulas, <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=665071">"Linear complexity algorithms for maximum throughput in radio networks and input queued switches"</a>, INFOCOM '98 (You should have access to the full text from any GT computer).</li>
+    <li>SERENA: P. Giaccone, B. Prabhakar and D. Shah, <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1197700">"Randomized scheduling algorithms for high-aggregate bandwidth switches"</a>, IEEE Journal on Selected Areas in Communications (You should have access to the full text from any GT computer).</li>
+    <li>Our recent paper on switching: <a href="qps-switching.pdf">``Queue-Proportional Sampling: A Better Approach to Crossbar Scheduling for Input-Queued Switches&quot;</a>, to be presented at ACM Sigmetrics 2017.</li>
+    <li>Slides for this paper: <a href="slides-for-qps.pptx">for-3251-class</a> <a href="qps-sigmetrics17.pptx">for-sigmetrics17</a></li>
+    <li><a href="switching22-27.pdf">My writings on the three switching algorithms above.</a></li>
+    <li>QPS paper: <a target="_blank" href="https://www.cc.gatech.edu/home/jx/reprints/Gong%20et%20al.%20-%202017%20-%20Queue-Proportional%20Sampling%20A%20Better%20Approach%20to%20.pdf" extra="FILE">Queue-Proportional Sampling: A Better Approach to Crossbar Scheduling for Input-Queued Switches</a></li>
+    <li>QPS-r paper: <a target="_blank" href="https://www.cc.gatech.edu/home/jx/reprints/Gong%20et%20al.%20-%202020%20-%20QPS-r%20A%20Cost-Effective%20Iterative%20Switching%20Algori.pdf" extra="FILE">QPS-r: A Cost-Effective Iterative Switching Algorithm for Input-Queued Switches</a><a target="_blank" href="https://www.cc.gatech.edu/home/jx/reprints/Meng%20and%20Gong%20-%20Sliding-Window%20QPS%20(SW-QPS)%20A%20Perfect%20Parallel%20It.pdf" extra="FILE"></a></li>
+    <li>SW-QPS paper: <a target="_blank" href="https://www.cc.gatech.edu/home/jx/reprints/Meng%20and%20Gong%20-%20Sliding-Window%20QPS%20(SW-QPS)%20A%20Perfect%20Parallel%20It.pdf" extra="FILE">Sliding-Window QPS (SW-QPS): A Perfect Parallel Iterative Switching Algorithm for Input-Queued Switches</a><br>
+    </li>
+  </ul>
+</ul>
+<br>
+<ul>
+  <li>Week-7 through 16<br>
+  </li>
+  <ul>
+    <li><a href="lecture16.pdf">Notes
+for
+Lecture 16 scribed
+by Khale, Anish</a></li>
+    <li><a href="lecture17.pdf">Notes
+for Lecture 17 scribed by Shradha
+Kohli</a></li>
+    <li><a href="lecture18.pdf">Notes
+for Lecture 18 scribed by Ashwin
+Kumble</a></li>
+    <li><a href="lecture19.pdf">Notes
+for Lecture 19 scribed by Tung-Yu
+Lee</a></li>
+    <li><a href="lecture20.pdf">Notes
+for Lecture 20 scribed by Sriram
+Madapusi Vasudevan</a></li>
+    <li><a href="lecture21.pdf">Notes
+for Lecture 21 scribed by Mathur,
+Ankita</a></li>
+    <li><a href="lecture22.pdf">Notes
+for Lecture 22 scribed by Medina,
+Fernando</a></li>
+    <li><a href="lecture23.pdf">Notes
+for Lecture 23 scribed by</a><a href="lecture23.pdf"> Muckaden,
+Sachit</a></li>
+    <li><a href="lecture24.pdf">Notes
+for Lecture 24 scribed by</a><a href="lecture24.pdf"> Mundo Bosch,
+Gerard</a></li>
+    <li><a href="lecture25.pdf">Notes
+for Lecture 25 scribed by</a><a href="lecture25.pdf"> Pai,
+Raghavendra</a></li>
+    <li><a href="lecture26.pdf">Notes
+for Lecture 26 scribed by
+Palanthandalam, Prashanth</a></li>
+    <li><a href="lecture27.pdf">Notes
+for Lecture 27 scribed by&nbsp;</a><a href="lecture27.pdf">Peek, Kevin</a></li>
+    <li><a href="lecture28.pdf">Notes
+for Lecture 28 scribed by </a><a href="lecture28.pdf">Potnis, Surabhi</a></li>
+    <li><a href="lecture29.pdf">Notes
+for Lecture 29 scribed by</a><a href="lecture25.pdf"> Roy, Nikhil</a></li>
+    <li><a href="lecture30.pdf">Notes
+for Lecture 30 scribed by Sabnis,
+Saurabh</a></li>
+    <li><a href="lecture31.pdf">Notes
+for Lecture 31 scribed by </a><a href="lecture27.pdf">Saini, Arvinder</a></li>
+    <li><a href="lecture27.pdf">Notes
+for Lecture 32 scribed by </a><a href="lecture32.pdf">Sarangan,
+Sundararajan</a></li>
+    <li><a href="lecture25.pdf">Notes
+for Lecture 33 scribed by</a><a href="lecture33.pdf"> Shadi, Kamal<br>
+      </a></li>
+    <li><a href="lecture34a.pdf">Notes
+for Lecture 34a scribed by Shih,
+Chao-Fang</a></li>
+    <li><a href="lecture34b.pdf">Notes
+for Lecture 34b scribed by Shih,
+Chao-Fang</a></li>
+    <li><a href="lecture27.pdf">Notes
+for Lecture 35 scribed by </a><a href="lecture35.pdf">Sirpilli, Suraj</a></li>
+    <li><a href="lecture27.pdf">Notes
+for Lecture 36 scribed by </a><a href="lecture36.pdf">Sitaram, Mohan</a></li>
+    <li><a href="lecture37.pdf">Notes
+for Lecture 37 scribed by
+Solanki, Pathik</a><br>
+    </li>
+    <li><a href="lecture27.pdf">Notes
+for Lecture 38 scribed by </a><a href="lecture38.pdf">Thyagarajan,
+Janani<br>
+      </a></li>
+  </ul>
+</ul>
+<ul>
+  <ul>
+    <li>Packet scheduling and QoS</li>
+    <ul>
+      <li>Readings: Varghese chapter 14</li>
+    </ul>
+  </ul>
+</ul>
+<div style="margin-left: 120px;">P. Valente, “<a
+ href="http://algo.ing.unimo.it/people/paolo/ToN/L-GPS_ToN.html">Exact
+GPS simulation with logarithmic complexity, and its application to an
+optimally fair scheduler</a>“, IEEE/ACM Transactions on Networking
+(ToN), February 2008.<br>
+We just talked about the example presented in its Figure 1 in class.<br>
+</div>
+<ul>
+  <ul>
+    <br>
+    <ul>
+      <div style="margin-left: 40px;"><br>
+      </div>
+    </ul>
+  </ul>
+  <blockquote>
+    <p><a href="http://portal.acm.org/citation.cfm?id=159914">A
+      generalized processor sharing approach to flow control in integrated
+      services networks : The Single-Node case.</a><br>
+      <span class="m"><span class="h">A. Parekh and R. Gallager.<br>
+      <br>
+      </span></span>IEEE Transacting on Networking, 1993.&nbsp; (We
+      will talk about
+      Theorems 1 in class)<br>
+      <a href="wf2q.pdf"><span class="m"><span class="l">WF2Q :
+      Worst-case Fair Weighted Fair Queueing</span></span>.</a><br>
+      J. Bennett, H. Zhang<br>
+      IEEE Infocom, 1996.&nbsp; (We will talk about the scheduler and its
+    equivalence to WFQ under certain traffic conditions)</p>
+    <p><a href="20120309-qfq.pdf">Paper</a>and <a href="20100127-qfq-full.pdf">techreport</a> on Quick Fair Queueing (QFQ).</p>
+    <p>A <a href="WF2Qseries.pdf">paper</a> on comparing a family of WF2Q+ policies.</p>
+    <p><a href="https://www.cs.cmu.edu/~cheeko/wf2q+/">The oringal WF2Q+ paper.</a><br>
+      <br>
+    </p>
+  </blockquote>
+</ul>
+<div style="margin-left: 120px;">
+  <p>Zhao, Q., Xu, J. ``<a
+ href="http://www.cc.gatech.edu/%7Ejx/reprints/gps_track.pdf">On the
+    Computational Complexity of Maintaining
+    GPS
+    Clock
+  in Packet Scheduling</a>'', in Proc. of IEEE Infocom 2004.</p>
+  <p>The <a href="gps-simulator.pdf">``standard" GPS simulator code</a>, the caveats of which are explained in the above paper.<br>
+    <br>
+    Xu, J., and Lipton, R. 2002. ``<a
+ href="http://www.cc.gatech.edu/%7Ejx/reprints/SIGCOMM02-1.pdf">On
+      Fundamental Tradeoffs between
+      Delay
+      Bounds
+      and Computational Complexity in Packet Scheduling Algorithms</a>'' , <i>ACM
+        SIGCOMM'2002</i>, Pittsburgh, PA, August 2002.&nbsp;&nbsp; <br>
+  </p>
+</div>
+<div style="margin-left: 120px;"><br>
+A paper of mine about re-use distance and caching: <br>
+<br>
+Jun Xu, Mukesh Singhal, and Joanne Degroat, <a
+ href="http://www.cc.gatech.edu/%7Ejx/reprints/INFOCOM00.pdf">"A Novel
+Cache Architecture to Support Layer-Four Packet Classification at
+Memory Access Speeds,"</a> Proceedings of the IEEE INFOCOM 2000,
+Tel-Aviv, Israel, March 2000.<br>
+<br>
+Chapter 14 of&nbsp; <a
+ href="http://www.amazon.com/Introduction-Algorithms-Thomas-H-Cormen/dp/0262033844">this
+book</a> is devoted to the topic of augmented data structures.<br>
+<br>
+&nbsp;<br>
+</div>
+<ul>
+  <ul>
+    <li><a
+ href="http://www.cc.gatech.edu/classes/AY2009/cs7260_fall/hol.pdf">Derivation
+of
+the
+saturation
+throughput
+of
+HOL
+blocking</a></li>
+
+
+
+    <li><a href="HOL-earlier-pages.pdf">Earlier pages that are also
+needed for this derivation</a><br>
+    </li>
+<br>
+<br>
+<br>
+<li><a href="ancs08_brick.ppt">BRICK </a></li>
+
+<li><a href="Sigm06counter_talk.pdf">Hybrid SRAM/DRAM architectures</a></li>
+
+<li><a href="times2.pdf">Proof of a times-2 bound</a></li>
+<br>
+<br>
+<li> You need only read Theorem 1 on page 11 of the following paper.
+<br>
+<br>
+Sung, M. and Xu, J. 2002. ``<a href="http://www.cc.gatech.edu/~jx/reprints/ICNP02B.pdf">IP Traceback-based Intelligent Packet Filtering: A Novel Technique for Defending Against Internet DDoS Attacks''</a>, IEEE Transactions on Parallel and Distributed Systems.  , vol 14, no 9, pp. 861--872, September 2003, (A preliminary version appeared in IEEE ICNP 2002, Paris, France, November 2002)   </li>
+    <ul>
+      <br>
+      <br>
+    </ul>
+  </ul>
+</ul>
+<ul>
+  <ul>
+    <ul>
+      <br>
+    </ul>
+  </ul>
+</ul>
+<ul>
+  <ul>
+    <li>Network data streaming algorithms<br>
+    </li>
+    <li>Readings:</li>
+  </ul>
+</ul>
+<div style="margin-left: 80px;">Streaming Algorithms for Counting
+Distinct Elements (<a
+ href="http://www.cc.gatech.edu/classes/AY2009/cs7260_fall/lecture2.pdf">Slides</a>)<br>
+<br>
+I could not find the "Walmart example" I covered in class.&nbsp; <a
+ href="http://www.cc.gatech.edu/classes/AY2011/cs7260_fall/count-distinct.pdf">This
+one</a> is close enough or even better.<br>
+</div>
+<div style="margin-left: 80px;"><br>
+<a href="http://www.stat.cornell.edu/%7Eli/CL_sketch.pdf"
+ target="_blank">"A sketch algorithm for estimating two-way and
+multi-way associations"</a> <br>
+Ping Li and Kenneth W. Church,
+Computational Linguistics 33(3), 305-354, 2007<br>
+<br>
+</div>
+<ul>
+  <ul>
+  </ul>
+</ul>
+<ul>
+  <ul>
+  </ul>
+  <ul>
+    <li>Leaky bucket shaping (Chp. 14.3), latency-rate servers, and
+end-to-end
+delay guarantees (Sec. V.A in the following paper).<br>
+    </li>
+    <li>Xu, J., and Lipton, R. 2002. ``<a
+ href="http://www.cc.gatech.edu/%7Ejx/reprints/SIGCOMM02-1.pdf">On
+Fundamental Tradeoffs between Delay Bounds and Computational Complexity
+in Packet Scheduling Algorithms</a>'' , ACM SIGCOMM'2002, Pittsburgh,
+PA, August 2002.&nbsp;&nbsp; <br>
+    </li>
+  </ul>
+</ul>
+<br>
+<br>
+<hr>
+<h2><a name="project">Group Project</a><strong>
+</strong></h2>
+<ul>
+  <li>
+    <h3>    Students shall form groups of two to three people each to work on group projects.&nbsp; Every (group) project MUST be focused on a
+      Network Algorithmics topic. Project reports on unrelated or marginally related topics (e.g., TCP congestion control mechanisms or BGP routing protocols) will receive little or no credit.&nbsp; Teams must be formed and one-page project proposal (with names of the group members specified) be submitted by late September. A  project can take one of the following two forms.
+      <strong>
+  </strong> </h3></li>
+</ul>
+<p>1. A research project that produces new network algorithmics solutions, e.g., new packet classfication techniques, new network data streaming and sketching algorithms,&nbsp; or new switching algorithms.</p>
+<p>2. An in-depth survey of a core or emerging network algorithmics topic, e.g., on new network data sketching algorithms that have emerged in the past several years.</p>
+<p>&nbsp;</p>
+<hr>
+<h2><a name="hmws">Homeworks</a></h2>
+<a href="file:///Volumes/jx/cs7260_fall-www/hw1f12.pdf"></a>A few regular homework assignments and possibly a programming assignment will
+be distributed during the semester.<br>
+<br>
+<hr>
+<h2><a name="grade">Grading&nbsp;<br>
+</a></h2>
+<ul>
+  <li>&nbsp;Midterm Exam on Oct. 12 (Wednesday); 25%&nbsp;</li>
+  <li><span style="font-style: italic;">Final Exam on Nov. 30 (Wednesday)</span>: <font color="red">25%</font></li>
+<li><span style="color: rgb(0, 0, 0);">&nbsp;</span></li>
+  <li><i>Group Project (report tentatively due on Dec. 5th)</i>:<font color="red"> &nbsp;25%</font></li>
+<li> <i>Homework Assignments</i>:<font color="red"> 25%</font></li>
+  <li><font color="red"><span style="color: rgb(51, 0, 51);">Simply
+filling out course evaluations</span>: extra 5%<br>
+    </font></li>
+</ul>
+<p>
+</p>
+<hr>
+<h2><a name="policy">Course Policies</a></h2>
+<ul>
+  <li>All work for this class (except the group project) is to be done
+individually. You are strongly urged to familiarize yourselves with the
+    <a href="http://www.deanofstudents.gatech.edu/Honor/">GT Student
+Honor Code</a> rules.  <br>
+Specifically, the following is <b>not</b> allowed:
+    <ol>
+      <li> Copying, with or without modification, someone else's work
+when this work is not meant to be publicly accessible (e.g., a
+classmate's program or solution). </li>
+      <li> Submission of material that is wholly or substantially
+identical to that created or published by another person or persons,
+without adequate credit notations indicating authorship (plagiarism). </li>
+    </ol>
+You are encouraged to discuss problems and papers with others as long
+as this does not involve copying of code or solutions. Any public
+material that you use (open-source software, help from a text, or
+substantial help from a friend, etc...) should be acknowledged
+explicitly in anything you submit to us. If you have any doubt about
+whether something is legal or not please do check with the class
+Instructor or the TA. </li>
+  <li> No late homework assignments or project reports will be accepted
+    beyond five lenient days total for the entire semester.<br>
+  </li>
+</ul>
+<br>
+<hr><br>
+<p></p>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=3990029; 
+var sc_invisible=1; 
+var sc_partition=48; 
+var sc_click_stat=1; 
+var sc_security="9160c088"; 
+</script>
+<script type="text/javascript" src="7260fall10_files/counter.js"></script>
+<noscript><div class="statcounter"><a
+href="http://www.statcounter.com/free_hit_counter.html"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/3990029/0/9160c088/1/" alt="web page hit
+counter"></a></div>
+</noscript>
+<!-- End of StatCounter Code -->
+</body>
+</html>
